@@ -8,9 +8,43 @@
     <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" type="text/css"/>
 </head>
   <body>
-    <h1>Students Management System</h1>
+    <main class="m-3">
+      <article class="container-fluid text-center">
+        <h1>Students Management System</h1>
 
-    <main>
+        <div>
+          <a class="h5 link-underline link-underline-opacity-0">Add new User</a>
+
+          <div class="mt-3">
+            <table class="table table-bordered">
+              <thead class="table-dark">
+                <tr>
+                  <th>ID</th>
+                  <th>First Name</th>
+                  <th>Last Name</th>
+                  <th>Age</th>
+                  <th>Email</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <th:block th:each="student : ${listStudents}">
+                  <tr>
+                    <td th:text="${student.id}"></td>
+                    <td th:text="${student.firstName}"></td>
+                    <td th:text="${student.lastName}"></td>
+                    <td th:text="${student.age}"></td>
+                    <td th:text="${student.email}"></td>
+                    <td>
+                      
+                    </td>
+                  </tr>
+                </th:block>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </article>
     </main>
 
   </body>
