@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class StudentService
 {
@@ -20,5 +22,10 @@ public class StudentService
             // Or handle the error in a way that makes sense for your application
         }
         return student;
+    }
+
+    public List<Student> listAll()
+    {
+        return studentRepository.findAll();
     }
 }
