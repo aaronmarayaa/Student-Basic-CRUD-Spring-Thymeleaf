@@ -13,7 +13,7 @@
         <h1>Students Management System</h1>
 
         <div>
-          <a class="h5 link-underline link-underline-opacity-0">Add new User</a>
+          <a class="h5 link-underline link-underline-opacity-0" th:href="@{/student-management/create-student}">Add new User</a>
           
           <div id="successMessage" th:if="${message}" class="alert alert-success text-center">
             [[${message}]]
