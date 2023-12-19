@@ -1,5 +1,6 @@
 package com.example.Students.Service;
 
+import com.example.Students.Exception.UserNotFoundException;
 import com.example.Students.Model.Student;
 import com.example.Students.Repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +8,7 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class StudentService
@@ -27,5 +29,16 @@ public class StudentService
     public List<Student> listAll()
     {
         return studentRepository.findAll();
+    }
+
+    public Student get(long id)
+    {
+        Optional<Student> result = studentRepository.findById(id);
+        if(result.isPresent())
+        {
+            return result.get();
+        }
+
+        throw new UserNotFoundException("Student Not Found!");
     }
 }
