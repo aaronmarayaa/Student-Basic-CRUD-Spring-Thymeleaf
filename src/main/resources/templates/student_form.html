@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" type="text/css"/>
+    <link rel="stylesheet" th:href="@{/css/student_form.css}">
+    <title>[[${pageTitle}]]</title>
+</head>
+  <body class="p-5">
+    <main class="container-fluid text-center">
+        <div><h2>[[${pageTitle}]]</h2></div>
+        <form th:action="@{/student-save}" method="post" th:object="${student}"
+          style="max-width: 500px;" class="mx-auto"
+        >
+          <article class="border border-secondary rounded p-3">
+            <input type="hidden" th:field="*{id}"/>
+
+            <div class="form-group row">
+              <label class="col-sm-4 col-form-label">First Name: </label>
+              <div class="col-sm-8">
+                <input type="text" th:field="*{firstName}" class="form-control" required min="2">
+              </div>
+
+            </div>
+          </article>
+        </form>
+    </main>
+  </body>
+</html>
