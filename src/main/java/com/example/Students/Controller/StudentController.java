@@ -27,12 +27,22 @@ public class StudentController
         return "index";
     }
 
-    // Create Student
+    // Save Student
     @PostMapping("/student-save")
-    public String createStudent(Student student)
+    public String studentSave(Student student)
     {
         studentService.saveStudent(student);
 
         return "redirect:/student-management/home";
+    }
+
+    // Create new Student using form
+    @GetMapping("/create-student")
+    public String createStudentWithForm(Model model)
+    {
+        model.addAttribute("student", new Student());
+        model.addAttribute("pageTitle", "Add new Student");
+
+        return "student_form";
     }
 }
