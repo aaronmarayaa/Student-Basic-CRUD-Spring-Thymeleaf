@@ -12,13 +12,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.List;
 
 @Controller
-@RequestMapping("/student-management/home")
+@RequestMapping("/student-management")
 public class StudentController
 {
     @Autowired
     StudentService studentService;
 
-    @GetMapping
+    @GetMapping("/home")
     public String home(Model model)
     {
         List<Student> listAll = studentService.listAll();
