@@ -3,3 +3,8 @@
 body {
     font-family: 'Roboto', sans-serif;
 }
+
+td a {
+    font-weight: 700;
+    color: black;
+}
