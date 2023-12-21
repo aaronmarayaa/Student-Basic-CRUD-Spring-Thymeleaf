@@ -29,6 +29,7 @@
                   <th>Last Name</th>
                   <th>Age</th>
                   <th>Email</th>
+                  <th></th>
                 </tr>
               </thead>
 
@@ -41,7 +42,13 @@
                     <td th:text="${student.age}"></td>
                     <td th:text="${student.email}"></td>
                     <td>
-
+                      <a class="m-3 link-underline link-underline-opacity-0"
+                        th:href="@{'/student-management/edit/student-' + ${student.id}}">
+                        Edit
+                      </a>
+                      <a class="link-underline link-underline-opacity-0 text-danger">
+                        Delete
+                      </a>
                     </td>
                   </tr>
                 </th:block>
