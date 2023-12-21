@@ -1,13 +1,16 @@
 package com.example.Students.Controller;
 
+import com.example.Students.Exception.UserNotFoundException;
 import com.example.Students.Model.Student;
 import com.example.Students.Service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
@@ -44,5 +47,22 @@ public class StudentController
         model.addAttribute("pageTitle", "Add new Student");
 
         return "student_form";
+    }
+
+    @GetMapping("/edit/student-{id}")
+    public String editWithStudentForm(@PathVariable long id, Model model, RedirectAttributes redirectAttributes)
+    {
+        try {
+            Student student = studentService.get(id);
+
+            model.addAttribute("student", student);
+            model.addAttribute("pageTitle", "Edit Student (ID :" + id + ")" );
+
+            return "student_form";
+        } catch (UserNotFoundException e) {
+            redirectAttributes.addFlashAttribute("message", e.getMessage());
+
+            return "redirect:/student-management/home";
+        }
     }
 }
