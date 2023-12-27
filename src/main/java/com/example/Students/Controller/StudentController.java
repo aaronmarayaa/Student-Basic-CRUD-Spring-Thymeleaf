@@ -35,6 +35,7 @@ public class StudentController
     public String studentSave(Student student, RedirectAttributes redirectAttributes)
     {
         studentService.saveStudent(student);
+        redirectAttributes.addFlashAttribute("alertType", "success");
         redirectAttributes.addFlashAttribute(
                 "message",
                 "The user has been successfully saved!");
@@ -63,6 +64,7 @@ public class StudentController
 
             return "student_form";
         } catch (UserNotFoundException e) {
+            redirectAttributes.addFlashAttribute("alertType", "danger");
             redirectAttributes.addFlashAttribute("message", e.getMessage());
 
             return "redirect:/student-management/home";
@@ -75,6 +77,7 @@ public class StudentController
         try {
             studentService.delete(id);
         } catch (UserNotFoundException e) {
+            redirectAttributes.addFlashAttribute("alertType", "danger");
             redirectAttributes.addFlashAttribute("message", e.getMessage());
         }
         return "redirect:/student-management/home";
