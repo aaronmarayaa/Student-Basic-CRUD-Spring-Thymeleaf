@@ -32,9 +32,12 @@ public class StudentController
 
     // Save Student
     @PostMapping("/student-save")
-    public String studentSave(Student student)
+    public String studentSave(Student student, RedirectAttributes redirectAttributes)
     {
         studentService.saveStudent(student);
+        redirectAttributes.addFlashAttribute(
+                "message",
+                "The user has been successfully saved");
 
         return "redirect:/student-management/home";
     }
