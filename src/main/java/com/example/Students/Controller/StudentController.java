@@ -37,7 +37,7 @@ public class StudentController
         studentService.saveStudent(student);
         redirectAttributes.addFlashAttribute(
                 "message",
-                "The user has been successfully saved");
+                "The user has been successfully saved!");
 
         return "redirect:/student-management/home";
     }
@@ -67,5 +67,16 @@ public class StudentController
 
             return "redirect:/student-management/home";
         }
+    }
+
+    @GetMapping("/delete/student-{id}")
+    public String deleteUser(@PathVariable("id") long id, RedirectAttributes redirectAttributes)
+    {
+        try {
+            studentService.delete(id);
+        } catch (UserNotFoundException e) {
+            redirectAttributes.addFlashAttribute("message", e.getMessage());
+        }
+        return "redirect:/student-management/home";
     }
 }
