@@ -16,7 +16,7 @@
         <div>
           <a class="h5 link-underline link-underline-opacity-0 btn btn-outline-info" th:href="@{/student-management/create-student}" role="button">Add new Profile</a>
           
-          <div id="successMessage" th:if="${message}" class="alert alert-success text-center">
+          <div id="successMessage" th:if="${message}" th:class="'alert alert-' + ${alertType} + ' text-center'">
             [[${message}]]
           </div>
 
