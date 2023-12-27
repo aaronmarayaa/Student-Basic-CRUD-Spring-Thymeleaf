@@ -41,4 +41,14 @@ public class StudentService
 
         throw new UserNotFoundException("Student Not Found!");
     }
+
+    public void delete(long id) throws UserNotFoundException
+    {
+        Long count = studentRepository.countById(id);
+        if(count == null || count == 0) {
+            throw new UserNotFoundException("Could not find user with ID: " + id);
+        }
+
+        studentRepository.deleteById(id);
+    }
 }
