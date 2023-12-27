@@ -46,7 +46,8 @@
                         th:href="@{'/student-management/edit/student-' + ${student.id}}">
                         Edit
                       </a>
-                      <a class="link-underline link-underline-opacity-0 text-danger">
+                      <a class="link-underline link-underline-opacity-0 text-danger"
+                         th:href="@{'/student-management/delete/student-' + ${student.id}}">
                         Delete
                       </a>
                     </td>
