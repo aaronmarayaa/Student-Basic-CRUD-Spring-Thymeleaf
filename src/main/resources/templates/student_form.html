@@ -11,7 +11,7 @@
     <main class="container-fluid text-center">
         <div><h2>[[${pageTitle}]]</h2></div>
         <form th:action="@{/student-management/student-save}" method="post" th:object="${student}"
-          style="max-width: 550px;" class="mx-auto" 
+          style="max-width: 550px;" class="mx-auto" onsubmit="return validatePasswords();"
         >
           <article class="border border-secondary rounded p-3 m-3">
             <input type="hidden" th:field="*{id}"/>
@@ -96,6 +96,27 @@
         img.src = (passwordInputs[0].type === "password") ? "/images/eye-close.png" : "/images/eye-open.png";
       }
 
+      function validatePasswords() {
+        var newPassword = document.getElementById("newPassword").value;
+        var confirmPassword = document.getElementById("confirmPassword").value;
+        var errorMessageElement = document.getElementById("errorMessage");
+        var studentForm = document.getElementById('studentForm');
+
+        if (newPassword !== confirmPassword) {
+          errorMessageElement.textContent = "Passwords do not match. Please try again.";
+          
+          errorMessageElement.style.display = 'block';
+          
+          setTimeout(() => {
+            errorMessageElement.style.display = 'none';
+          }, 3000);
+
+          return false;
+        } else {
+          errorMessageElement.textContent = "";
+          return true;
+        }
+      }
     </script>
   </body>
 </html>
