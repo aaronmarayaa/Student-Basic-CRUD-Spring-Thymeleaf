@@ -57,6 +57,7 @@ public class StudentController
     {
         model.addAttribute("student", new Student());
         model.addAttribute("pageTitle", "Add new Student");
+        model.addAttribute("passwordName", "Password: ");
 
         return "student_form";
     }
@@ -69,6 +70,7 @@ public class StudentController
 
             model.addAttribute("student", student);
             model.addAttribute("pageTitle", "Edit Student (ID :" + id + ")" );
+            model.addAttribute("passwordName", "New Password: ");
 
             return "student_form";
         } catch (UserNotFoundException e) {
