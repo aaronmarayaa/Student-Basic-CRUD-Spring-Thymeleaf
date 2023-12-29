@@ -11,7 +11,7 @@
     <main class="container-fluid text-center">
         <div><h2>[[${pageTitle}]]</h2></div>
         <form th:action="@{/student-management/student-save}" method="post" th:object="${student}"
-          style="max-width: 500px;" class="mx-auto"
+          style="max-width: 550px;" class="mx-auto" 
         >
           <article class="border border-secondary rounded p-3 m-3">
             <input type="hidden" th:field="*{id}"/>
@@ -45,18 +45,24 @@
             </div>
             
             <div class="form-group row mt-3">
-              <label class="col-sm-4 col-form-label">Password: </label>
+              <label class="col-sm-4 col-form-label">[[${passwordName}]] </label>
               <div class="col-sm-8">
-                  <div class="input-wrapper">
-                    <input type="password" th:field="*{password}" 
-                      id="passwordInput" 
-                      class="form-control" 
-                      required
-                      minlength="8"
-                      placeholder="Enter your password">
-                    <button id="showPasswordBtn" onclick="togglePasswordVisibility()">
+                <div class="input-wrapper">
+                    <input class="form-control passwordInput" type="password" id="newPassword" th:field="*{password}" name="newPassword" required minlength="8">
+
+                    <a role="button" id="showPasswordBtn" onclick="togglePasswordVisibility()">
                         <img src="/images/eye-close.png" alt="Eye icon">
-                    </button>
+                    </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group row mt-3">
+              <label class="col-sm-4 col-form-label">Confirm Password: </label>
+              <div class="col-sm-8">
+                <div class="input-wrapper">                
+                  <input class="form-control passwordInput" type="password" id="confirmPassword" name="confirmPassword" required minlength="8">
+                  <div id="errorMessage" class="errorMessage alert alert-danger text-center"></div>
                 </div>
               </div>
             </div>
@@ -75,17 +81,21 @@
       }
 
       function togglePasswordVisibility() {
-        var passwordInput = document.getElementById("passwordInput");
+        var passwordInputs = document.getElementsByClassName("passwordInput");
         var showPasswordBtn = document.getElementById("showPasswordBtn");
 
-        if (passwordInput.type === "password") {
-            passwordInput.type = "text";
-            showPasswordBtn.innerHTML = '<img src="/images/eye-open.png" alt="Eye icon">';
-        } else {
-            passwordInput.type = "password";
-            showPasswordBtn.innerHTML = '<img src="/images/eye-close.png" alt="Eye icon">';
+        for (var i = 0; i < passwordInputs.length; i++) {
+          if (passwordInputs[i].type === "password") {
+            passwordInputs[i].type = "text";
+          } else {
+            passwordInputs[i].type = "password";0
+          }
         }
+
+        var img = showPasswordBtn.querySelector('img');
+        img.src = (passwordInputs[0].type === "password") ? "/images/eye-close.png" : "/images/eye-open.png";
       }
+
     </script>
   </body>
 </html>
