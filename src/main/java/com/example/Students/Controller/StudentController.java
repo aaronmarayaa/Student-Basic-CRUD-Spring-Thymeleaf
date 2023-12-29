@@ -1,5 +1,6 @@
 package com.example.Students.Controller;
 
+import com.example.Students.Exception.EmailAlreadyExistException;
 import com.example.Students.Exception.UserNotFoundException;
 import com.example.Students.Model.Student;
 import com.example.Students.Service.StudentService;
@@ -34,13 +35,20 @@ public class StudentController
     @PostMapping("/student-save")
     public String studentSave(Student student, RedirectAttributes redirectAttributes)
     {
-        studentService.saveStudent(student);
-        redirectAttributes.addFlashAttribute("alertType", "success");
-        redirectAttributes.addFlashAttribute(
-                "message",
-                "The user has been successfully saved!");
+        try {
+            studentService.saveStudent(student);
+            redirectAttributes.addFlashAttribute("alertType", "success");
+            redirectAttributes.addFlashAttribute(
+                    "message",
+                    "The user has been successfully saved!");
 
-        return "redirect:/student-management/home";
+            return "redirect:/student-management/home";
+        } catch (EmailAlreadyExistException e) {
+            redirectAttributes.addFlashAttribute("alertType", "danger");
+            redirectAttributes.addFlashAttribute("message", e.getMessage());
+
+            return "redirect:/student-management/home";
+        }
     }
 
     // Create new Student using form
