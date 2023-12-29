@@ -1,5 +1,6 @@
 package com.example.Students.Service;
 
+import com.example.Students.Exception.EmailAlreadyExistException;
 import com.example.Students.Exception.UserNotFoundException;
 import com.example.Students.Model.Student;
 import com.example.Students.Repository.StudentRepository;
@@ -16,12 +17,12 @@ public class StudentService
     @Autowired
     private StudentRepository studentRepository;
 
-    public Student saveStudent(Student student) {
+    public Student saveStudent(Student student) throws EmailAlreadyExistException 
+    {
         try {
             studentRepository.save(student);
         } catch (DataIntegrityViolationException e) {
-            throw new IllegalArgumentException("Email already exists");
-            // Or handle the error in a way that makes sense for your application
+            throw new EmailAlreadyExistException("Email already exists!");
         }
         return student;
     }
