@@ -18,7 +18,6 @@ function validatePasswords() {
     var newPassword = document.getElementById("newPassword").value;
     var confirmPassword = document.getElementById("confirmPassword").value;
     var errorMessageElement = document.getElementById("errorMessage");
-    var studentForm = document.getElementById('studentForm');
 
     if (newPassword !== confirmPassword) {
         errorMessageElement.textContent = "Passwords do not match. Please try again.";
