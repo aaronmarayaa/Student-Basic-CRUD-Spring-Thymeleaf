@@ -1,20 +1,11 @@
 # Student Management System
 
-![Main Page](/documentation//img/Main.png)
-
 The endpoint of this page is `/student-management/home` showing the
 basic information of students such as `ID`,  `First Name`, `Last Name`, `Age` and `Email`.
 
 It also contains buttons for ***revision*** like `Add new Profile`, `Edit`, and `Delete`.
 
-$~$
-## Adding New Student
-
-The `Add new Profile` with an endpoint of `/student-management/create-student` lets you create new student to the list.
-
-![Alt text](documentation/img/Create.png)
-
-
+![Main Page](/documentation//img/Main.png)
 
 | Field      | Type         | Null | Key | Default | Extra          |
 |------------|--------------|------|-----|---------|----------------|
@@ -24,6 +15,13 @@ The `Add new Profile` with an endpoint of `/student-management/create-student` l
 | First Name | varchar(255) | NO   |     | NULL    |                |
 | Last Name  | varchar(255) | NO   |     | NULL    |                |
 | Password   | varchar(255) | NO   |     | NULL    |                |
+
+$~$
+## Adding New Student
+
+The `Add new Profile` with an endpoint of `/student-management/create-student` lets you create new student to the list.
+
+![Alt text](documentation/img/Create.png)
 
 $~$
 
