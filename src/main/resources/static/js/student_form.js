@@ -4,9 +4,9 @@ function togglePasswordVisibility() {
 
     for (var i = 0; i < passwordInputs.length; i++) {
         if (passwordInputs[i].type === "password") {
-        passwordInputs[i].type = "text";
+            passwordInputs[i].type = "text";
         } else {
-        passwordInputs[i].type = "password";0
+            passwordInputs[i].type = "password";
         }
     }
 
